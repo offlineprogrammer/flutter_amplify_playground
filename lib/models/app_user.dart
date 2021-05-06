@@ -1,6 +1,8 @@
+import 'package:amplify_datastore/amplify_datastore.dart';
 import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:flutter_amplify_playground/models/ModelProvider.dart';
 import '../amplifyconfiguration.dart';
 
 class AppUser extends ChangeNotifier {
@@ -13,7 +15,9 @@ class AppUser extends ChangeNotifier {
 
   void configureAmplify() async {
     AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
-    Amplify.addPlugins([authPlugin]);
+    AmplifyDataStore datastorePlugin =
+        AmplifyDataStore(modelProvider: ModelProvider.instance);
+    Amplify.addPlugins([authPlugin, datastorePlugin]);
 
     try {
       await Amplify.configure(amplifyconfig);

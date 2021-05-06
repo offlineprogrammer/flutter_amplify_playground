@@ -1,0 +1,12 @@
+type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+  status: TodoStatus!
+}
+
+enum TodoStatus {
+  NEW
+  INPROGRESS
+  DONE
+}
